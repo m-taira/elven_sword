@@ -1,0 +1,22 @@
+= simple_form_for(@daily_report, wrapper: "horizontal_form", :html => { :class => 'form-horizontal' }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :date, as: :hidden
+    = f.input :start_datetime, as: :string, input_html: {value: @daily_report.start_datetime}
+    = f.input :end_datetime, as: :string, input_html: {value: @daily_report.end_datetime}
+    = f.input :work_status, as: :radio_buttons, item_wrapper_class: "radio-inline"
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"
+
+  javascript:
+    $(function(){
+      $("#daily_report_start_datetime").clockpicker({autoclose: true});
+      $("#daily_report_end_datetime").clockpicker({autoclose: true});
+      $('#daily_report_date').datepicker({
+        format: 'yyyy/mm/dd',
+        language: 'ja',       // カレンダー日本語化のため
+        autoclose: true
+      });
+    });

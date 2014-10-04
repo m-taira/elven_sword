@@ -38,7 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'devise'
+gem 'devise', '3.3'
 gem 'bootstrap-sass'
 gem 'simple_form', '~>3.1.rc2'
 gem 'jquery-ui-rails'

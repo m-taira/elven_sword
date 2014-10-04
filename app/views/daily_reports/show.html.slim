@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong User:
+  = @daily_report.user_id
+p
+  strong Date:
+  = @daily_report.date
+p
+  strong Start datetime:
+  = @daily_report.start_datetime
+p
+  strong End datetime:
+  = @daily_report.end_datetime
+p
+  strong Work status:
+  = @daily_report.work_status
+
+= link_to 'Edit', edit_daily_report_path(@daily_report)
+'|
+= link_to 'Back', daily_reports_path

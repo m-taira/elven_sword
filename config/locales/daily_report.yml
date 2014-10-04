@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    attributes:
+      daily_report:
+        date: 日付
+        start_datetime: 出社時間
+        end_datetime: 退社時間
+        work_status: 勤務区分
+
+  enumerize:
+    daily_report:
+      work_status:
+        attendance: 出勤
+        paid_vacation: 年休

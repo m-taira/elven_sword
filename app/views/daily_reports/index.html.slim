@@ -1,0 +1,23 @@
+h1 Listing daily_reports
+
+ul.pager
+  li.previous = link_to "前月", daily_reports_path(date: @date.prev_month)
+  li.next = link_to "翌月", daily_reports_path(date: @date.next_month)
+.panel.panel-default
+  .panel-heading = @date.strftime("%Y年%m月")
+  table.table
+    thead
+      tr
+        th = DailyReport.human_attribute_name(:date)
+        th = DailyReport.human_attribute_name(:start_datetime)
+        th = DailyReport.human_attribute_name(:end_datetime)
+        th = DailyReport.human_attribute_name(:work_status)
+
+    tbody
+      - (@date.beginning_of_month..@date.end_of_month).each do |date|
+        tr
+          td = link_to date, new_daily_report_path(date: date)
+          td = @daily_reports.find {|r| r.date == date }.try(:start_datetime)
+          td = @daily_reports.find {|r| r.date == date }.try(:end_datetime)
+          td = @daily_reports.find {|r| r.date == date }.try(:work_status).try(:text)
+= link_to "出力", monthly_output_daily_reports_path(date: @date), class: "btn btn-primary"
