@@ -6,6 +6,9 @@ ja:
         start_datetime: 出社時間
         end_datetime: 退社時間
         work_status: 勤務区分
+        normal_work_hours: 通常
+        overtime_work_hours: 時間外
+        late_work_hours: 早朝・深夜
 
   enumerize:
     daily_report:

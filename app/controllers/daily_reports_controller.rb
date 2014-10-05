@@ -33,7 +33,7 @@ class DailyReportsController < ApplicationController
 
     respond_to do |format|
       if @daily_report.save
-        format.html { redirect_to @daily_report, notice: 'Daily report was successfully created.' }
+        format.html { redirect_to daily_reports_path, notice: 'Daily report was successfully created.' }
         format.json { render :show, status: :created, location: @daily_report }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class DailyReportsController < ApplicationController
   def update
     respond_to do |format|
       if @daily_report.update(daily_report_params)
-        format.html { redirect_to @daily_report, notice: 'Daily report was successfully updated.' }
+        format.html { redirect_to daily_reports_path, notice: 'Daily report was successfully updated.' }
         format.json { render :show, status: :ok, location: @daily_report }
       else
         format.html { render :edit }

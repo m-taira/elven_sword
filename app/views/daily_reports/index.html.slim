@@ -12,12 +12,22 @@ ul.pager
         th = DailyReport.human_attribute_name(:start_datetime)
         th = DailyReport.human_attribute_name(:end_datetime)
         th = DailyReport.human_attribute_name(:work_status)
+        th = DailyReport.human_attribute_name(:normal_work_hours)
+        th = DailyReport.human_attribute_name(:overtime_work_hours)
+        th = DailyReport.human_attribute_name(:late_work_hours)
 
     tbody
       - (@date.beginning_of_month..@date.end_of_month).each do |date|
         tr
           td = link_to date, new_daily_report_path(date: date)
-          td = @daily_reports.find {|r| r.date == date }.try(:start_datetime)
-          td = @daily_reports.find {|r| r.date == date }.try(:end_datetime)
-          td = @daily_reports.find {|r| r.date == date }.try(:work_status).try(:text)
+          - if d = @daily_reports.find {|r| r.date == date }
+            td = d.start_datetime.try(:strftime, '%H:%M')
+            td = d.end_datetime.try(:strftime, '%H:%M')
+            td = d.work_status.text
+            td = d.normal_work_hours.round(2) if d.work_status.attendance?
+            td = d.overtime_work_hours.round(2) if d.work_status.attendance?
+            td = (d.early_work_hours + d.late_work_hours).round(2) if d.work_status.attendance?
+          - else
+            td[colspan=6]
+
 = link_to "出力", monthly_output_daily_reports_path(date: @date), class: "btn btn-primary"
