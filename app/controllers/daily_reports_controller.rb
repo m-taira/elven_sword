@@ -5,7 +5,7 @@ class DailyReportsController < ApplicationController
   # GET /daily_reports.json
   def index
     @date = params[:date].present? ? Date.parse(params[:date]) : Date.today
-    @daily_reports = DailyReport.where("date > ? and date <= ?", @date.beginning_of_month, @date.end_of_month)
+    @daily_reports = DailyReport.where("date >= ? and date <= ?", @date.beginning_of_month, @date.end_of_month)
   end
 
   # GET /daily_reports/1

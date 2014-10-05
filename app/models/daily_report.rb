@@ -8,6 +8,10 @@ class DailyReport < ActiveRecord::Base
 
   def_delegators :@work_time, :early_work_hours, :normal_work_hours, :overtime_work_hours, :late_work_hours
 
+  validates :start_datetime, presence: {if: ->(r){ r.work_status.attendance? }}
+  validates :end_datetime,   presence: {if: ->(r){ r.work_status.attendance? }}
+  validates :work_status,    presence: true
+
   def start_datetime=(time)
     super("#{date} #{time}") if time.present?
   end

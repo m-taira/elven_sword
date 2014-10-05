@@ -1,5 +1,9 @@
 ja:
   activerecord:
+    errors:
+      models:
+        daily_report:
+          attributes:
     attributes:
       daily_report:
         date: 日付
